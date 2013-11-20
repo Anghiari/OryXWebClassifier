@@ -1,0 +1,145 @@
+$def with (url,prediction,type)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+
+    <title>OryX Classifcation</title>
+
+	<link href="/static/custom2.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+	<link href="/static/custom.css" rel="stylesheet">
+    <link href="/static/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    
+    <script>
+					  var GRAPH_1 = 30;
+					  var GRAPH_2 = 30;
+					  var GRAPH_3 = 30;
+					  
+					  function p2a( p){
+					  		
+					  		if(p == 0){
+					  			p = 1;
+					  		}
+							var a = (p/100)*360;
+							a = a-90;
+							return ((a/360)*2)-0.00001;
+					  }
+					  
+					  function drawchart(canvas,val,colour){
+					  
+					  		if(val > 100){
+					  			val = 100;
+					  		}
+						  var context = canvas.getContext('2d');
+						  var x = canvas.width / 2;
+						  var y = canvas.height / 2;
+						  var radius = 50;
+						  
+						  var startAngle = 1.5 * Math.PI;
+						  var endAngle = 1.49999 * Math.PI;
+						  var counterClockwise = false;
+						  context.beginPath();
+						  context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+							  context.lineWidth = 10;
+						  context.strokeStyle = '#e5e5e5';
+						  context.stroke();
+
+						  var startAngle = 1.5* Math.PI;
+						  var endAngle = p2a(val)* Math.PI;
+						  var counterClockwise = false;
+						  context.beginPath();
+						  context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+						  context.lineWidth = 10;
+						  context.strokeStyle = colour;
+						  context.stroke();
+						  
+						  context.font="28px Didact Gothic";
+						  context.fillStyle = '#333333';
+						  context.textAlign = 'center';
+						  context.textBaseline = 'middle';
+						  context.fillText(val+"%", x, y);
+					  }
+	</script>
+	
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+		  <li><a href="/" >Home</a></li>
+        </ul>
+        <h3 class="text-muted">OryX - Web Visualizer</h3>
+      </div>
+
+	  <!-- <div class="alert alert-danger"></span>Please enter a correct url</div> -->
+	  
+      <div id="jb" class="jumbotron">
+	  	  <h1 id="jh">$type</h1>
+	  <p>$url</p>
+	  <table>
+	  <tr>
+		  <td>
+			<div class="chart">
+				<canvas id="canvas1" width="193px;"></canvas>
+			</div>
+			</td>
+		  <script>
+			  var canvas = document.getElementById('canvas1');
+			  drawchart(canvas,$int(prediction[1][0]*100),'#00b9e1')
+		   </script>
+		  <td>
+			<div class="chart">
+				<canvas id="canvas2" width="193px;">
+				</canvas>
+			</div>
+		  </td>
+		  <script>
+			  var canvas = document.getElementById('canvas2');
+			  drawchart(canvas,$int(prediction[1][1]*100),'#e10078')
+		   </script>
+		  <td>
+			<div class="chart">
+				<canvas id="canvas3" width="193px;">
+				</canvas>
+			</div>
+		  </td>
+		  <script>
+			  var canvas = document.getElementById('canvas3');
+			  drawchart(canvas,$int(prediction[1][2]*100),'#3ca541')
+		   </script>
+	  </tr>
+	  <tr>
+		<td><span class="label label-blogs">Blog</span></td>
+		<td><span class="label label-forums">Forum</span></td>
+		<td><span class="label label-orgs">Org Page</span></td>
+	  </tr>
+	  </table>
+      </div>
+      <div class="footer">
+        <p>&copy; Team - Anghiari 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

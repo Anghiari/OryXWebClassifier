@@ -1,0 +1,47 @@
+body{
+
+}
+
+body,h1,h2,h3,h4,h5{
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.text-muted{
+	color:#fa0c0c;
+}
+.nav li a{
+	font-size:18px;
+}
+.input-group{
+	width:100%;
+	margin-bottom:20px;
+	margin-top:10px;
+
+}
+
+.alert{
+	font-size:24px;
+	text-align:center;
+}
+
+.jumbotron{
+	background-color:#fff;
+}
+
+#jb{
+	padding-bottom:0px;
+	padding-top:0px;
+}
+
+.label {
+ font-weight:normal;
+}
+.label-blogs{
+	background-color:#00b9e1;
+}
+.label-forums{
+	background-color:#e10078;
+}
+.label-orgs{
+	background-color:#3ca541;
+}
